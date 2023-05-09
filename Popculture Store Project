@@ -1,0 +1,30 @@
+--Create a store database of pop culture items
+
+CREATE TABLE popculture (id INTEGER PRIMARY KEY, category TEXT, style TEXT, name TEXT,  price INTEGER);
+
+INSERT INTO popculture VALUES(1,"Apparel", " My Hero Academia", " Deku cosplay hoodie", 19.99);
+INSERT INTO popculture VALUES (2, "Pop! Vinyl Figures", " Kellogs Eggo", "Waffle Syrup Scented", 14.99);
+INSERT INTO popculture VALUES (3, "Plush", " Squishmallows", "Godzilla_8_in", 24.99);
+INSERT INTO popculture VALUES (4, "Jewelry", "Sailor Moon", "Glitter Ribbon Necklace",14.99);
+INSERT INTO popculture VALUES (5, "Key chains", "Friday 13th", "Jason Mask Pewter", 7.99);
+INSERT INTO popculture VALUES (6, "Bed_Bath", "Peanuts Character", "Grid throw blanket", 26.99);
+INSERT INTO popculture VALUES (7, "Games", "Dice Game", "What the Cup!?", 22.99);
+INSERT INTO popculture VALUES (8, "Pins", "Harry Potter", "Ravenclaw crest enamel", 4.99);
+INSERT INTO popculture VALUES (9, "Cards", "Stranger Things", "UNO FLIP", 6.99);
+INSERT INTO popculture VALUES (10, "Magnets", "Pluto PVC", "Cupcake Scented", 3.99);
+INSERT INTO popculture VALUES (11, "Novelties", "Tattoo Bandages", "_No Regrets_", 6.99);
+INSERT INTO popculture VALUES (12, "Pillows", "one ft plush", "Pink Axolotl", 34.99);
+INSERT INTO popculture VALUES (13, "Lanyards", "Harley Quinn", "lanyard passport holder", 11.99);
+INSERT INTO popculture VALUES (14, "Kitchenware", "Star Trek Next Generation", " Communicator badge bottle opener", 21.99);
+INSERT INTO popculture VALUES (15, "Home Decor", "Monopoly_Free Parking", "Coir Doormat", 26.99);
+
+Select * FROM popculture;
+
+--display the database ordered by price
+Select * FROM popculture ORDER BY price;
+
+--display the database of items priced over 14.99
+SELECT * FROM popculture WHERE price > 14.99;
+
+display the database of items priced over 14.99 in order by price
+SELECT * FROM popculture WHERE price > 14.99 ORDER BY Price;
