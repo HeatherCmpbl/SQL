@@ -1,0 +1,31 @@
+--create database of pintrest app
+CREATE TABLE pintrest (id INTEGER PRIMARY KEY, board_name TEXT, pins INTEGER, idea_type TEXT);
+
+INSERT INTO pintrest (id,board_name, pins, idea_type) VALUES (1,"Goodies",258,"desserts_treats");
+INSERT INTO pintrest (id,board_name, pins, idea_type) VALUES (2,"Minature Crafts", 150,"crafts_clay");
+INSERT INTO pintrest (id,board_name, pins, idea_type) VALUES (3,"Party Ideas", 66, "Decorations_themed");
+INSERT INTO pintrest (id,board_name, pins, idea_type) VALUES (4,"Parties", 45, "Themes_treats");
+INSERT INTO pintrest (id,board_name, pins, idea_type) VALUES (5, "Dolls", 48, "clothes_accessories");
+INSERT INTO pintrest (id,board_name, pins, idea_type) VALUES (6, "Centerpieces", 12, "holiday_decorations");
+
+--display from database all
+SELECT * FROM pintrest;
+
+--display database update to rename id 1 board name to "Desserts"
+UPDATE pintrest SET board_name="Desserts" Where id=1;
+
+--display database all to check change made
+SELECT * FROM pintrest;
+
+--display database delete board name "Centerpieces"
+DELETE FROM pintrest WHERE board_name="Centerpieces";
+
+--display from database all to check board has been deleted
+SELECT * FROM pintrest;
+
+
+
+
+
+
+
