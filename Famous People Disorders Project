@@ -1,0 +1,49 @@
+--created data base of famous people
+--created database of famous people with disorders
+--created database of famous people with shared disorders
+CREATE TABLE famous_people (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, profession TEXT);
+
+INSERT INTO famous_people VALUES (1, "Demi", "Lovato", "Musician");
+INSERT INTO famous_people VALUES (2, "Shawn", "Mendez", "Musician");
+INSERT INTO famous_people VALUES (3, "Mariah", "Carey", "Musician");
+INSERT INTO famous_people VALUES (4, "Emma", "Stone", "Actress");
+INSERT INTO famous_people VALUES (5, "Robert", "Downey Jr.", "Actor");
+INSERT INTO famous_people VALUES (6, "Jonah", "Hill", "Actor");
+
+CREATE TABLE famous_people_disorders (id INTEGER PRIMARY KEY, person_id INTEGER, disorder TEXT);
+
+INSERT INTO famous_people_disorders (person_id, disorder) VALUES (1, "Bipolar");
+INSERT INTO famous_people_disorders (person_id, disorder) VALUES (2, "Anxiety");
+INSERT INTO famous_people_disorders (person_id, disorder) VALUES (3, "Bipolar");
+INSERT INTO famous_people_disorders (person_id, disorder) VALUES (4, "Anxiety");
+INSERT INTO famous_people_disorders (person_id, disorder) VALUES (5, "Bipolar");
+INSERT INTO famous_people_disorders (person_id, disorder) VALUES (6, "Anxiety");
+
+
+CREATE TABLE famous_people_shared_disorders (id INTEGER PRIMARY KEY, disorder1_id INTEGER, disorder2_id INTEGER);
+
+INSERT INTO famous_people_shared_disorders (disorder1_id, disorder2_id) VALUES (1,3);
+INSERT INTO famous_people_shared_disorders (disorder1_id, disorder2_id) VALUES (3,5);
+INSERT INTO famous_people_shared_disorders (disorder1_id, disorder2_id) VALUES (1,5);
+INSERT INTO famous_people_shared_disorders (disorder1_id, disorder2_id) VALUES (2,4);
+INSERT INTO famous_people_shared_disorders (disorder1_id, disorder2_id) VALUES (4,6);
+INSERT INTO famous_people_shared_disorders (disorder1_id, disorder2_id) VALUES (2,6);
+
+--display database by disorder 1 and disorder 2 from the table "famous_people_shared_disorders" and Joined "famous_people_disorders" 
+to the table "famous_people_shared_disorders" where disorder 1 is A and disorder 2 is B
+
+SELECT a.disorder,b.disorder FROM famous_people_shared_disorders JOIN famous_people_disorders a ON famous_people_shared_disorders.disorder1_id=a.id 
+JOIN famous_people_disorders b ON famous_people_shared_disorders.disorder2_id=b.id;
+
+--display database by all from table "famous_people_disorders" and "famous_people" when person_id on the table "famous_people_disorders" is the same as id on the table "famous_people"
+SELECT * FROM famous_people_disorders,famous_people WHERE famous_people_disorders.person_id=famous_people.id;
+
+--display database by first_name, last_name from the table "famous_people" and disorders from the table "famous_people_disorders" and join the table "famous people disorders"
+when the column people.id from the table "famous_people" and the column person_id from the table "famous_people_disorders" is the same
+SELECT famous_people.first_name,famous_people.last_name, famous_people_disorders.disorder FROM famous_people
+JOIN famous_people_disorders 
+ON famous_people.id=famous_people_disorders.person_id;
+
+
+
+
