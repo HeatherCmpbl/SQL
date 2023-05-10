@@ -1,4 +1,5 @@
---Created pokemon table
+--Created database of pokemon stats
+
 CREATE TABLE pokemon ( Number INTEGER, name TEXT PRIMARY KEY, Type_1 TEXT, Type_2 TEXT, Total INTEGER, HP INTEGER, Attack INTEGER, Defense INTEGER, Sp_Atk INTEGER, Sp_Def INTEGER, Speed INTEGER, Generation INTEGER, Legendary TEXT);
 	INSERT INTO pokemon(Number,Name,Type_1,Type_2,Total,HP,Attack,Defense,Sp_Atk,Sp_Def,Speed,Generation,Legendary) VALUES (1,'Bulbasaur','Grass','Poison',318,45,49,49,65,65,45,1,'False');
 	INSERT INTO pokemon(Number,Name,Type_1,Type_2,Total,HP,Attack,Defense,Sp_Atk,Sp_Def,Speed,Generation,Legendary) VALUES (2,'Ivysaur','Grass','Poison',405,60,62,63,80,80,60,1,'False');
@@ -800,29 +801,64 @@ CREATE TABLE pokemon ( Number INTEGER, name TEXT PRIMARY KEY, Type_1 TEXT, Type_
 	INSERT INTO pokemon(Number,Name,Type_1,Type_2,Total,HP,Attack,Defense,Sp_Atk,Sp_Def,Speed,Generation,Legendary) VALUES (720,'HoopaHoopa Confined','Psychic','Ghost',600,80,110,60,150,130,70,6,'True');
 	INSERT INTO pokemon(Number,Name,Type_1,Type_2,Total,HP,Attack,Defense,Sp_Atk,Sp_Def,Speed,Generation,Legendary) VALUES (720,'HoopaHoopa Unbound','Psychic','Dark',680,80,160,60,170,130,80,6,'True');
 	INSERT INTO pokemon(Number,Name,Type_1,Type_2,Total,HP,Attack,Defense,Sp_Atk,Sp_Def,Speed,Generation,Legendary) VALUES (721,'Volcanion','Fire','Water',600,80,110,120,130,90,70,6,'True');
-	
+
+--display database ordered by total
 SELECT * FROM pokemon ORDER BY Total;
+
+--display database where hp is over 100 and ordered by hp
 SELECT * FROM pokemon WHERE hp >100 ORDER BY hp;
+
+--display database by name and then grouped by sp_atk
 SELECT name, SUM(sp_atk) FROM pokemon GROUP BY sp_atk;
+
+--display database where speed is more than 75 ordered by speed
 SELECT * FROM pokemon WHERE speed >75 ORDER BY speed;
+
+--display database where sp_atk is more than 50 and sp_def is more than 50
 SELECT * FROM pokemon WHERE sp_atk >50 AND sp_def >50;
+
+--display database where speed is over 100 or defense is over 100
 SELECT * FROM pokemon WHERE speed >100 OR defense >100;
+
+--display database where type_1 is grass
 SELECT * FROM pokemon WHERE Type_1="Grass";
+
+--display database where type_1 or type_2 is Fairy
 SELECT * FROM pokemon WHERE Type_1="Fairy" or Type_2="Fairy";
+
+--display database where type_1 is Bug, Grass, or Poision
 SELECT * FROM pokemon WHERE Type_1 IN ("Bug", "Grass", "Poison");
+
+--display database with the sum of all HP
 SELECT SUM(HP) FROM pokemon;
+
+--display database with the max of all HP
 SELECT MAX(HP) FROM pokemon;
+
+--display database with the sum of all HP grouped by attack
 SELECT SUM(HP) FROM pokemon GROUP BY Attack;
-SELECT attack, SUM(HP) FROM pokemon GROUP BY attack;
+
+--display database by name and SUM(HP) grouped by attack
 SELECT name, SUM(HP) FROM pokemon GROUP BY attack;
+
+--display database by name and SUM(HP) as the column total_hits grouped by attack
 SELECT name, SUM(HP) AS total_hits FROM pokemon GROUP BY attack;
+
+--display database by name and SUM(HP) as the column total_hits grouped by having over 200 in the column total_hits
 SELECT name, SUM(HP) AS total_hits FROM pokemon GROUP BY name HAVING total_hits >200;
+
+--display database all where speed is more than 100
 SELECT COUNT(*) FROM pokemon WHERE speed >100;
+
+--display database all where speed is 100 or more and sp_atk is more than 100
 SELECT COUNT(*) FROM pokemon WHERE speed >=100 and sp_atk >100;
+
+--display database by name, speed, sp_attack; Case: where speed is more than 100 and sp_atk is more than 100 THEN Fast, 
+where speed is less 100 and sp_atk is less than 100 THEN Slow, everything else is then not recommended; ends as fastest
 SELECT name, speed, sp_atk,
     CASE
         WHEN speed>100 AND sp_atk>100 THEN "Fast"
-        WHEN speed<100 AND sp_atk>100 THEN "Slow"
+        WHEN speed<100 AND sp_atk<100 THEN "Slow"
         ELSE "Not Recommended"
     END AS "Fastest"
 FROM pokemon;
